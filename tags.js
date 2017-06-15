@@ -61,7 +61,7 @@ module.exports = function tagsPlugin(schema, options) {
     if (paths.some(doc.isModified, doc)) {
       doc.set(options.path, paths.reduce(function (tags, path) {
         var val = doc.get(path) || '';
-        var matches = val.toLowerCase().match(options.match) || [];
+        var matches = val[0].toLowerCase().match(options.match) || [];
 
         return tags.concat(matches.map(options.map));
       }, []).filter(uniq));
